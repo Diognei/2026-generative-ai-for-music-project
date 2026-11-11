@@ -24,7 +24,7 @@ Tarefa geral: Composição livre (incondicional), a partir do zero ou continuand
   - [x] Treiná-lo com o dataset lakh midi dataset inteiro
   - [ ] Definir uma estratégia melhor para inicializar os tokens
 
-- [ ] Implementação do principal baseline
+- [ ] Implementação dos baselines
   - [ ] Implementar um baseline para comparação
   - [ ] Definir outros baselines que já temos prontos
     
