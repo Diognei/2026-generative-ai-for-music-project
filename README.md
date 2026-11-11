@@ -11,7 +11,7 @@ Tarefa geral: Composição livre (incondicional), a partir do zero ou continuand
 
 - [x] Implementação do método principal
   - [x] Implementar o código do Transformer principal
-  - [ ] Treiná-lo com o dataset lakh midi dataset inteiro
+  - [x] Treiná-lo com o dataset lakh midi dataset inteiro
   - [ ] Definir uma estratégia melhor para inicializar os tokens
 
 - [ ] Implementação de um ou mais baselines
