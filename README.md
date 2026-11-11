@@ -11,7 +11,7 @@ python3 src/train.py
 ```
 
 ```bash
-python3 src/generate.py output/checkpoint_epoch_50.pt
+python3 src/generate.py checkpoints/checkpoint_epoch_50.pt
 ```
 
 ## Tarefas
