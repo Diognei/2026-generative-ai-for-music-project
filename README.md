@@ -2,8 +2,17 @@
 
 ## Como rodar
 
-`./start_container.sh
+```bash
+./start_container.sh
+```
 
+```bash
+python3 src/train.py
+```
+
+```bash
+python3 src/generate.py
+```
 
 ## Tarefas
 
