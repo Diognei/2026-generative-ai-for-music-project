@@ -10,7 +10,7 @@ Tarefa geral: Composição livre (incondicional), a partir do zero ou continuand
     - Treinar um Transformer para aprender a gerar músicas parecidas com as de um dataset de midi amplo: lakh midi dataset.
 
 - [x] Implementação do método principal
-  - [ ] Implementar o código do Transformer principal
+  - [x] Implementar o código do Transformer principal
   - [ ] Treiná-lo com o dataset lakh midi dataset inteiro
   - [ ] Definir uma estratégia melhor para inicializar os tokens
 
@@ -18,14 +18,15 @@ Tarefa geral: Composição livre (incondicional), a partir do zero ou continuand
   - [ ] Implementar um baseline para comparação
   - [ ] Definir outros baselines que já temos prontos
     
-Implementação das métricas de avaliação
-    - FAD, KLD, Métrica de diversidade
-
-Pesquisa por trabalhos relacionados
-    - Pesquisar 5 artigos do ISMIR que façam algo parecido com o nosso trabalho
-    - Ler os artigos e definir quais as contribuições do nosos método em relação a cada um deles
+- [ ] Implementação das métricas de avaliação
+  - [ ] FAD
+  - [ ] KLD
+  - [ ] Pesquisar outra métrica para medir diversidade das músicas geradas
+- [ ] Pesquisa por trabalhos relacionados
+  - [ ] Pesquisar 5 artigos do ISMIR que façam algo parecido com o nosso trabalho
+  - [ ] Ler os artigos e definir quais as contribuições do nosos método em relação a cada um deles
     
-Escrita do artigo e apresentação
-    - Organizar as seções do artigo
-    - Escrever o artigo
-    - Preparar a apresentação
+- [ ] Escrita do artigo e apresentação
+  - [ ] Organizar as seções do artigo
+  - [ ] Escrever o artigo
+  - [ ] Preparar a apresentação
