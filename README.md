@@ -10,9 +10,9 @@ Tarefa geral: Composição livre (incondicional), a partir do zero ou continuand
     - Treinar um Transformer para aprender a gerar músicas parecidas com as de um dataset de midi amplo: lakh midi dataset.
 
 Implementação do método principal
-    - [ ] Implementar o código do Transformer principal
-    - [ ] Treiná-lo com o dataset lakh midi dataset inteiro
-    - [ ] Definir uma estratégia melhor para inicializar os tokens
+- [ ] Implementar o código do Transformer principal
+- [ ] Treiná-lo com o dataset lakh midi dataset inteiro
+- [ ] Definir uma estratégia melhor para inicializar os tokens
 
 Implementação de um ou mais baselines
     - Implementar um baseline para comparação
