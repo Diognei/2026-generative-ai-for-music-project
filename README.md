@@ -16,8 +16,8 @@ python3 src/generate.py
 
 ## Tarefas
 
-Tarefa geral: Composição livre (incondicional), a partir do zero ou continuando um trecho inicial (prompt);
-    - Treinar um Transformer para aprender a gerar músicas parecidas com as de um dataset de midi amplo: lakh midi dataset.
+- Tarefa geral: Composição livre (incondicional), a partir do zero ou continuando um trecho inicial (prompt);
+  - Treinar um Transformer para aprender a gerar músicas parecidas com as de um dataset de midi amplo: lakh midi dataset.
 
 - [x] Implementação do método principal
   - [x] Implementar o código do Transformer principal
