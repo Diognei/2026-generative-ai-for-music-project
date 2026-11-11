@@ -2,7 +2,8 @@
 
 ## Como rodar
 
-Coming soon...
+`./start_container.sh
+
 
 ## Tarefas
 
