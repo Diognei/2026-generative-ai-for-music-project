@@ -43,13 +43,13 @@ python3 src/generate.py checkpoints/checkpoint_epoch_50.pt
   - [x] Implementar o código de cálculo do KLD
   - [ ] Pesquisar outra métrica para medir diversidade das músicas geradas
 
--  [ ] Implementar código de geração da tabela de resultados quantitativos
+- [ ] Implementar código de geração da tabela de resultados quantitativos
   - [ ] Definir o formato da tabela (métricas vs métodos)
   - [ ] Definir os dados nos quais cada métrica será calculada
   - [ ] Calcular as métricas em todos os dados gerando a tabela
   - [ ] Verificar se é necessário gerar alguma outra tabela
 
--  [ ] Implemenar código de geração da figura de resultados qualitativos
+- [ ] Implemenar código de geração da figura de resultados qualitativos
   - [ ] Definir o formato da figura (figura sumarizando as músicas geradas)
   - [ ] Implementar código para geração da figura a partir de uma pasta de músicas geradas
 
