@@ -37,7 +37,7 @@ python3 generator/generate.py checkpoints/model_best.pt
 
 ### Methodology
 
-- [x] Implementação do método principal
+- [x] Implementação do método principal (generator/)
   - [x] Implementar o código do Transformer principal
   - [x] Treiná-lo com o dataset lakh midi dataset inteiro
   - [ ] Definir uma estratégia melhor para inicializar os tokens
@@ -49,10 +49,10 @@ python3 generator/generate.py checkpoints/model_best.pt
   - [ ] Implementar um baseline para comparação
   - [ ] Definir outros baselines que já temos prontos
     
-- [ ] Implementação das métricas de avaliação
+- [ ] Implementação das métricas de avaliação (evaluator/)
   - [x] Implementar o código de cálculo do FAD
   - [x] Implementar o código de cálculo do KLD
-  - [ ] Pesquisar outra métrica para medir diversidade das músicas geradas
+  - [ ] Pesquisar e implementar outra métrica para medir diversidade das músicas geradas
 
 - [ ] Implementar código de geração da principal tabela de resultados quantitativos
   - [ ] Definir o formato da tabela (métricas vs métodos)
