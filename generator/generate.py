@@ -7,7 +7,7 @@ import torch
 import pretty_midi
 
 from vocabulary import Vocabulary
-from model import MusicTransformer
+from model import build_model
 from constraints import ConstrainedDecoder
 from midi_events import midi_to_tokens, tokens_to_midi, TIME_STEP
 from generate_pianoroll import generate_pianoroll
@@ -121,6 +121,36 @@ def sample_token(
 
     selected = torch.multinomial(probabilities, num_samples=1)
     return allowed_tensor[selected].item()
+
+
+class NextTokenLogits:
+    """Logits do próximo token para uma sequência que só cresce.
+
+    Transformer: reprocessa a janela dos últimos block_size tokens.
+    LSTM (modelos com step()): alimenta só os tokens novos e carrega o
+    estado (h, c), o que deixa a geração do baseline linear no tamanho.
+    """
+
+    def __init__(self, model, device):
+        self.model = model
+        self.device = device
+        self.state = None
+        self.consumed = 0
+
+    @torch.no_grad()
+    def __call__(self, sequence):
+        if hasattr(self.model, "step"):
+            new_tokens = sequence[self.consumed:]
+            if not new_tokens:
+                raise RuntimeError("A sequência não cresceu desde o último passo.")
+            x = torch.tensor([new_tokens], dtype=torch.long, device=self.device)
+            logits, self.state = self.model.step(x, self.state)
+            self.consumed = len(sequence)
+            return logits
+
+        context = sequence[-self.model.block_size:]
+        x = torch.tensor([context], dtype=torch.long, device=self.device)
+        return self.model(x)[0, -1, :]
 
 
 def initial_sequence(vocab, data_dir=DATA_DIR):
@@ -308,18 +338,11 @@ def generate(
         track_budgets=track_budgets,
         max_note_duration_steps=MAX_NOTE_DURATION_STEPS,
     )
+    next_logits = NextTokenLogits(model, device)
 
     for step in range(max_new_tokens):
 
-        context = sequence[-model.block_size:]
-
-        x = torch.tensor(
-            [context],
-            dtype=torch.long,
-            device=device
-        )
-
-        logits = model(x)[0, -1, :]
+        logits = next_logits(sequence)
 
         if not torch.isfinite(logits).all():
             raise RuntimeError(
@@ -404,6 +427,7 @@ def _generate_no_reference(
         sequence.append(vocab.track_end_id)
 
     tokens_per_track = max(64, max_new_tokens // len(track_plan))
+    next_logits = NextTokenLogits(model, device)
     total_generated = 0
 
     for track_idx, (is_drum, program) in enumerate(track_plan):
@@ -418,14 +442,7 @@ def _generate_no_reference(
         track_tokens = 0
 
         while track_tokens < track_limit and total_generated < max_new_tokens:
-            context = sequence[-model.block_size:]
-            x = torch.tensor(
-                [context],
-                dtype=torch.long,
-                device=device,
-            )
-
-            logits = model(x)[0, -1, :]
+            logits = next_logits(sequence)
 
             if not torch.isfinite(logits).all():
                 break
@@ -563,13 +580,16 @@ def main():
             "Execute novamente: python src/train.py"
         )
 
-    model = MusicTransformer(
-        vocab_size=checkpoint["vocab_size"],
-        block_size=checkpoint["block_size"],
-        d_model=checkpoint["d_model"],
-        n_heads=checkpoint["n_heads"],
-        n_layers=checkpoint["n_layers"],
-        dropout=checkpoint["dropout"]
+    # Checkpoints antigos não têm "arch"/"model_config": são do Transformer.
+    arch = checkpoint.get("arch", "transformer")
+    model_config = checkpoint.get("model_config") or {
+        key: checkpoint[key]
+        for key in ("block_size", "d_model", "n_heads", "n_layers", "dropout")
+    }
+    model = build_model(
+        arch,
+        checkpoint["vocab_size"],
+        model_config
     ).to(device)
 
     model.load_state_dict(
@@ -582,6 +602,7 @@ def main():
                 f"Checkpoint inválido: {name}"
             )
 
+    print(f"Architecture: {arch}")
     print(f"Device: {device}")
     print(f"Vocabulary size: {vocab.size}")
     print(f"Maximum tracks: {MAX_TRACKS}")
