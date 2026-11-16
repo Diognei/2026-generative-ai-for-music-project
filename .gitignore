@@ -1,0 +1,4 @@
+/data/
+/output/**
+!/output/**/
+!/output/**/*.mp4
