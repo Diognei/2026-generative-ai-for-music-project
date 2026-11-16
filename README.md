@@ -69,6 +69,6 @@ python3 generator/generate.py checkpoints/model_best.pt
 ### Paper
 
 - [ ] Escrita do artigo e apresentação
-  - [ ] Organizar as seções do artigo
+  - [x] Estruturar as seções do artigo
   - [ ] Escrever o artigo
   - [ ] Preparar a apresentação
