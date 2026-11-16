@@ -1,6 +1,7 @@
 /data/train/
 /data/valid/
 /data/test/
+/data/test-wav/
 /data/full/
 /output/**
 !/output/**/

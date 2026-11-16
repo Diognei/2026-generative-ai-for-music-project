@@ -16,7 +16,7 @@ def list_audio_files(directory):
     if not directory.is_dir():
         raise NotADirectoryError(f"Audio directory not found: {directory}")
     files = sorted(
-        path for path in directory.iterdir()
+        path for path in directory.rglob("*")
         if path.is_file() and path.suffix.lower() in SUPPORTED_EXTENSIONS
     )
     if not files:
@@ -109,6 +109,15 @@ def extract_embeddings(path):
 def aggregate_embeddings(paths):
     embeddings = [extract_embeddings(path) for path in paths]
     return np.concatenate(embeddings, axis=0)
+
+
+def extract_embeddings_with_progress(paths, label):
+    embeddings = []
+    total_files = len(paths)
+    for file_index, path in enumerate(paths, start=1):
+        print(f"{label} {file_index}/{total_files}: {path}", flush=True)
+        embeddings.append(extract_embeddings(path))
+    return embeddings
 
 
 def distribution(embeddings):

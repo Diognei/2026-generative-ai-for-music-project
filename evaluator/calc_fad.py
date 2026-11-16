@@ -3,7 +3,10 @@ from pathlib import Path
 
 import numpy as np
 
-from audio_features import aggregate_embeddings, extract_embeddings, list_audio_files
+from audio_features import (
+    extract_embeddings_with_progress,
+    list_audio_files,
+)
 
 
 def covariance(embeddings):
@@ -39,11 +42,31 @@ def frechet_distance(input_embeddings, reference_embeddings):
 def calculate_fad(input_dir, reference_dir):
     input_files = list_audio_files(input_dir)
     reference_files = list_audio_files(reference_dir)
-    reference_embeddings = aggregate_embeddings(reference_files)
-    scores = [
-        frechet_distance(extract_embeddings(path), reference_embeddings)
-        for path in input_files
-    ]
+    print(f"Found {len(input_files)} input WAV file(s).", flush=True)
+    print(f"Found {len(reference_files)} reference WAV file(s).", flush=True)
+
+    reference_embeddings = np.concatenate(
+        extract_embeddings_with_progress(
+            reference_files,
+            "Loading reference",
+        ),
+        axis=0,
+    )
+    input_embeddings = extract_embeddings_with_progress(
+        input_files,
+        "Loading input",
+    )
+
+    scores = []
+    for file_index, (path, embeddings) in enumerate(
+        zip(input_files, input_embeddings),
+        start=1,
+    ):
+        print(
+            f"Calculating FAD {file_index}/{len(input_files)}: {path}",
+            flush=True,
+        )
+        scores.append(frechet_distance(embeddings, reference_embeddings))
     return np.asarray(scores, dtype=np.float64)
 
 
