@@ -24,6 +24,8 @@ python3 generator/generate.py checkpoints/model_best.pt
 
 ## Tarefas
 
+### Tarefa Geral
+
 - Tarefa geral: Composição livre (incondicional), a partir do zero ou continuando um trecho inicial (prompt);
   - Treinar um Transformer para aprender a gerar músicas parecidas com as de um dataset de midi amplo: lakh midi dataset.
 
@@ -57,7 +59,7 @@ python3 generator/generate.py checkpoints/model_best.pt
   - [ ] Definir os dados nos quais cada métrica será calculada
     - [ ] ConjuntoR: Músicas do conjunto de teste do lakh midi dataset (Músicas de referência)
     - [ ] Conjunto1: Músicas do conjunto de validação do lakh midi dataset (Músicas do próprio dataset)
-    - [ ] Conjunto2: Músicas geradas pelo método principal
+    - [ ] Conjunto2: Músicas geradas pelo método principal (sem alinhamento)
     - [ ] Conjunto3: Músicas geradas pelo baseline principal
     - [ ] Conjunto4: Músicas geradas por outros baselines (se houver)
   - [ ] Calcular as métricas em todos os dados gerando a tabela
