@@ -33,7 +33,7 @@ DATA_DIR = Path("data")
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SOUNDFONT_PATH = PROJECT_ROOT / "assets" / "PC51d.sf2"
 
-#Override default parameters:
+#LOW INTENSITY CONFIG (Override default parameters):
 #TEMPERATURE = 0.75
 #MAX_NEW_TOKENS = 4096
 #TOP_K = 32
@@ -41,7 +41,7 @@ SOUNDFONT_PATH = PROJECT_ROOT / "assets" / "PC51d.sf2"
 #REPETITION_PENALTY = 1.0
 #REPETITION_WINDOW = 128
 
-#Override default parameters:
+#HIGH INTENSITY CONFIG (Override default parameters):
 #MAX_NEW_TOKENS = 12000
 #TOP_K = 64
 #TOP_P = 1
