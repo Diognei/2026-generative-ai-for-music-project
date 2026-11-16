@@ -19,7 +19,7 @@ python3 generator/train.py
 Gerar uma nova música:
 
 ```bash
-python3 generator/generate.py checkpoints/checkpoint_epoch_50.pt
+python3 generator/generate.py checkpoints/model_best.pt
 ```
 
 ## Tarefas
