@@ -39,6 +39,7 @@ python3 generator/generate.py checkpoints/model_best.pt
   - [x] Implementar o código do Transformer principal
   - [x] Treiná-lo com o dataset lakh midi dataset inteiro
   - [ ] Definir uma estratégia melhor para inicializar os tokens
+    - [ ] Melhorar a inicialização dos instrumentos aleatórios
 
 ### Experiments
 
