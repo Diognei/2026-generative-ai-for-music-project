@@ -1,4 +1,7 @@
-/data/
+/data/train/
+/data/valid/
+/data/test/
+/data/full/
 /output/**
 !/output/**/
 !/output/**/*.mp4
