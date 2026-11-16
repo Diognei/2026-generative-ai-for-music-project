@@ -2,16 +2,24 @@
 
 ## Como rodar
 
+### Inicializar o container docker 
+
+É necessário ter o docker instalado, ou criar seu próprio virtual environment a partir do requirements.txt
+
 ```bash
 ./start_container.sh
 ```
 
-```bash
-python3 src/train.py
-```
+### Treinar o gerador de músicas
 
 ```bash
-python3 src/generate.py checkpoints/checkpoint_epoch_50.pt
+python3 generator/train.py
+```
+
+### Gerar uma nova música
+
+```bash
+python3 generator/generate.py checkpoints/checkpoint_epoch_50.pt
 ```
 
 ## Tarefas
