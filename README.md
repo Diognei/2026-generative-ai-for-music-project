@@ -1,92 +1,43 @@
-# MusicGen — versão com relógio global
+# Generative AI for Music - Final Project
 
-Esta pasta é uma versão independente do projeto original. Ela mantém as
-dependências auxiliares, mas não inclui `data/`, outras pastas `data*` nem
-`output/`; coloque os arquivos MIDI de treino em `data/` quando for executar.
-
-As pistas agora são codificadas em um relógio compartilhado. Os eventos são
-ordenados por tempo absoluto e usam `TRACK_SELECT_n`, portanto notas
-simultâneas de instrumentos diferentes não reiniciam o relógio a cada pista.
-O treinamento também usa contexto de 2048 tokens, Transformer de 256
-dimensões com 6 camadas e 8 cabeças, máscara de padding e validação por
-arquivo MIDI. O melhor checkpoint de validação é salvo em `output/model.pt`.
-
-Para treinar:
+## Como rodar
 
 ```bash
-python src/train.py
+./start_container.sh
 ```
-
-Para gerar:
 
 ```bash
-python src/generate.py
+python3 src/train.py
 ```
-
-## MusicGen — primeiro experimento
-
-Pipeline mínimo de geração MIDI com Transformer Decoder-only.
-
-## Estrutura
-
-```text
-musicgen/
-├── data/
-│   └── song1.mid
-├── output/
-├── src/
-│   ├── vocabulary.py
-│   ├── midi_events.py
-│   ├── dataset.py
-│   ├── model.py
-│   ├── constraints.py
-│   ├── train.py
-│   └── generate.py
-└── requirements.txt
-```
-
-## Instalação
 
 ```bash
-pip install -r requirements.txt
+python3 src/generate.py checkpoints/checkpoint_epoch_50.pt
 ```
 
-Coloque o arquivo MIDI em `data/song1.mid`. O caminho é de arquivo;
-não coloque uma barra `/` depois de `.mid`.
+## Tarefas
 
-## Treinamento
+- Tarefa geral: Composição livre (incondicional), a partir do zero ou continuando um trecho inicial (prompt);
+  - Treinar um Transformer para aprender a gerar músicas parecidas com as de um dataset de midi amplo: lakh midi dataset.
 
-Na raiz do projeto:
+- [x] Implementação do método principal
+  - [x] Implementar o código do Transformer principal
+  - [x] Treiná-lo com o dataset lakh midi dataset inteiro
+  - [ ] Definir uma estratégia melhor para inicializar os tokens
 
-```bash
-python src/train.py
-```
-
-O script procura todos os arquivos `*.mid` e `*.midi` em `data/`.
-Para começar com uma única música, deixe somente `song1.mid` nessa pasta.
-
-O checkpoint será salvo em `output/model.pt`.
-
-## Geração
-
-```bash
-python src/generate.py
-```
-
-O resultado será salvo em uma nova pasta `outX/`, onde `X` é o primeiro
-índice disponível (`out1/`, `out2/`, `out3/`, ...). A pasta conterá o MIDI,
-o pianoroll em PNG, o áudio WAV e o vídeo MP4 gerados para aquela execução.
-
-Ajuste `TEMPERATURE` em `src/generate.py` para controlar a diversidade.
-
-## Observações
-
-- `BLOCK_SIZE=2048` limita o contexto do Transformer. Músicas maiores são
-  divididas em janelas independentes durante o treinamento.
-- O experimento usa tempo em segundos quantizado em passos de 10 ms.
-  A reconstrução preserva os tempos aproximados das notas, mas não garante
-  preservar metadados originais como andamento, fórmulas de compasso e letras.
-- A geração usa o plano de pistas de uma referência aleatória e mantém um
-  relógio global; a qualidade ainda depende do dataset e da amostragem.
-- Este é um baseline experimental com representação multipista mais robusta,
-  não uma implementação otimizada para treinamento em larga escala.
+- [ ] Implementação dos baselines
+  - [ ] Implementar um baseline para comparação
+  - [ ] Definir outros baselines que já temos prontos
+    
+- [ ] Implementação das métricas de avaliação
+  - [ ] FAD
+  - [ ] KLD
+  - [ ] Pesquisar outra métrica para medir diversidade das músicas geradas
+  
+- [ ] Pesquisa por trabalhos relacionados
+  - [ ] Pesquisar 5 artigos do ISMIR que façam algo parecido com o nosso trabalho
+  - [ ] Ler os artigos e definir quais as contribuições do nosso método em relação a cada um deles
+    
+- [ ] Escrita do artigo e apresentação
+  - [ ] Organizar as seções do artigo
+  - [ ] Escrever o artigo
+  - [ ] Preparar a apresentação
