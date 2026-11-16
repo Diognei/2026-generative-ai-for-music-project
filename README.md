@@ -26,7 +26,7 @@ python3 generator/generate.py checkpoints/model_best.pt
 
 ### Tarefa Geral
 
-- Tarefa geral: Composição livre (incondicional), a partir do zero ou continuando um trecho inicial (prompt);
+- Composição livre (incondicional), a partir do zero ou continuando um trecho inicial (prompt);
   - Treinar um Transformer para aprender a gerar músicas parecidas com as de um dataset de midi amplo: lakh midi dataset.
 
 ### Related Work
