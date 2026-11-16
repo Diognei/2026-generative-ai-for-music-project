@@ -51,13 +51,17 @@ python3 generator/generate.py checkpoints/model_best.pt
   - [x] Implementar o código de cálculo do KLD
   - [ ] Pesquisar outra métrica para medir diversidade das músicas geradas
 
-- [ ] Implementar código de geração da tabela de resultados quantitativos
+- [ ] Implementar código de geração da principal tabela de resultados quantitativos
   - [ ] Definir o formato da tabela (métricas vs métodos)
   - [ ] Definir os dados nos quais cada métrica será calculada
+    - [ ] ConjuntoR: Músicas do conjunto de teste do lakh midi dataset (Músicas de referência)
+    - [ ] Conjunto1: Músicas do conjunto de validação do lakh midi dataset (Músicas do próprio dataset)
+    - [ ] Conjunto2: Músicas geradas pelo método principal
+    - [ ] Conjunto3: Músicas geradas pelo baseline principal
+    - [ ] Conjunto4: Músicas geradas por outros baselines (se houver)
   - [ ] Calcular as métricas em todos os dados gerando a tabela
-  - [ ] Verificar se é necessário gerar alguma outra tabela
 
-- [ ] Implemenar código de geração da figura de resultados qualitativos
+- [ ] Implemenar código de geração da principal figura de resultados qualitativos
   - [ ] Definir o formato da figura (figura sumarizando as músicas geradas)
   - [ ] Implementar código para geração da figura a partir de uma pasta de músicas geradas
 

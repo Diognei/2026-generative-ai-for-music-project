@@ -339,6 +339,7 @@ class ConstrainedDecoder:
         current_time = 0
         selected_track = None
         active = set()
+        note_start_times = {}
         pending_velocity = False
         note_count = 0
         for token_id in sequence[1:]:
@@ -351,15 +352,65 @@ class ConstrainedDecoder:
                 pending_velocity = True
             elif token.startswith("NOTE_ON_") and selected_track is not None:
                 pitch = int(token.split("_")[2])
-                active.add((selected_track, pitch))
+                note_key = (selected_track, pitch)
+                active.add(note_key)
+                note_start_times[note_key] = current_time
                 pending_velocity = False
                 note_count += 1
             elif token.startswith("NOTE_OFF_") and selected_track is not None:
-                active.discard((selected_track, int(token.split("_")[2])))
-        return current_time, selected_track, active, pending_velocity, note_count
+                note_key = (selected_track, int(token.split("_")[2]))
+                active.discard(note_key)
+                note_start_times.pop(note_key, None)
+        return (
+            current_time,
+            selected_track,
+            active,
+            note_start_times,
+            pending_velocity,
+            note_count,
+        )
 
     def allowed_next(self, sequence):
-        current_time, selected_track, active, pending, note_count = self._state(sequence)
+        (
+            current_time,
+            selected_track,
+            active,
+            note_start_times,
+            pending,
+            note_count,
+        ) = self._state(sequence)
+
+        expired_notes = {
+            note_key
+            for note_key in active
+            if self.max_note_duration_steps is not None
+            and current_time - note_start_times[note_key]
+            >= self.max_note_duration_steps
+        }
+
+        if expired_notes and selected_track is not None:
+            selected_track_expired = {
+                pitch
+                for track, pitch in expired_notes
+                if track == selected_track
+            }
+            if selected_track_expired:
+                return [
+                    token_id
+                    for token_id in self.vocab.note_off_ids
+                    if int(self.vocab.decode(token_id).split("_")[2])
+                    in selected_track_expired
+                ]
+
+        if expired_notes:
+            expired_tracks = sorted({track for track, _ in expired_notes})
+            return [
+                token_id
+                for token_id in self.vocab.track_select_ids
+                if int(self.vocab.decode(token_id).split("_")[2])
+                in expired_tracks
+            ]
+
         if pending and selected_track is not None:
             return [token_id for token_id in self.vocab.note_on_ids
                     if (selected_track, int(self.vocab.decode(token_id).split("_")[2])) not in active]
@@ -385,7 +436,7 @@ class ConstrainedDecoder:
         return allowed
 
     def force_close(self, sequence):
-        _, _, active, _, _ = self._state(sequence)
+        _, _, active, _, _, _ = self._state(sequence)
         for track, pitch in sorted(active):
             sequence.extend([
                 self.vocab.encode(f"TRACK_SELECT_{track}"),
