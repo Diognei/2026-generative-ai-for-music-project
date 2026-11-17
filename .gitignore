@@ -6,4 +6,5 @@
 /output/random/**
 !/output/random/**/
 !/output/random/**/*.mp4
-"/output/evaluation/**/"
+/output/evaluation/**/*.wav
+/output/evaluation/**/*.mid
