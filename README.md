@@ -74,7 +74,7 @@ python3 evaluator/calc_diversity.py <pasta_de_midis_gerados> data/test --json ou
     - [x] Conjunto1: Músicas do conjunto de validação do lakh midi dataset (Músicas do próprio dataset)
     - [x] Conjunto2: Músicas geradas pelo método principal (sem alinhamento)
     - [X] Conjunto3: Músicas geradas pelo baseline principal
-    - [X] Conjunto4: Músicas geradas por outros baselines (se houver)
+    - [ ] Conjunto4: Músicas geradas por outros baselines (se houver)
   - [ ] Calcular as métricas em todos os dados gerando a tabela
 
 - [ ] Implemenar código de geração da principal figura de resultados qualitativos
