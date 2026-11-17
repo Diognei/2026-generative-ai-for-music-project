@@ -68,13 +68,13 @@ python3 evaluator/calc_diversity.py <pasta_de_midis_gerados> data/test --json ou
   - [x] Implementar o código de cálculo da Diversidade
 
 - [ ] Implementar código de geração da principal tabela de resultados quantitativos
-  - [ ] Definir o formato da tabela (métricas vs métodos)
-  - [ ] Definir os dados nos quais cada métrica será calculada
-    - [ ] ConjuntoR: Músicas do conjunto de teste do lakh midi dataset (Músicas de referência)
-    - [ ] Conjunto1: Músicas do conjunto de validação do lakh midi dataset (Músicas do próprio dataset)
-    - [ ] Conjunto2: Músicas geradas pelo método principal (sem alinhamento)
-    - [ ] Conjunto3: Músicas geradas pelo baseline principal
-    - [ ] Conjunto4: Músicas geradas por outros baselines (se houver)
+  - [x] Definir o formato da tabela (métricas vs métodos)
+  - [x] Definir os dados nos quais cada métrica será calculada
+    - [x] ConjuntoR: Músicas do conjunto de teste do lakh midi dataset (Músicas de referência)
+    - [x] Conjunto1: Músicas do conjunto de validação do lakh midi dataset (Músicas do próprio dataset)
+    - [x] Conjunto2: Músicas geradas pelo método principal (sem alinhamento)
+    - [X] Conjunto3: Músicas geradas pelo baseline principal
+    - [X] Conjunto4: Músicas geradas por outros baselines (se houver)
   - [ ] Calcular as métricas em todos os dados gerando a tabela
 
 - [ ] Implemenar código de geração da principal figura de resultados qualitativos
