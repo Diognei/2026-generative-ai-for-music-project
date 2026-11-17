@@ -58,14 +58,14 @@ python3 evaluator/calc_diversity.py <pasta_de_midis_gerados> data/test --json ou
 
 ### Experiments
 
-- [ ] Implementação dos baselines
-  - [ ] Implementar um baseline para comparação
+- [x] Implementação dos baselines
+  - [x] Implementar um baseline para comparação
   - [ ] Definir outros baselines que já temos prontos
     
-- [ ] Implementação das métricas de avaliação (evaluator/)
+- [x] Implementação das métricas de avaliação (evaluator/)
   - [x] Implementar o código de cálculo do FAD
   - [x] Implementar o código de cálculo do KLD
-  - [ ] Pesquisar e implementar outra métrica para medir diversidade das músicas geradas
+  - [x] Implementar o código de cálculo da Diversidade
 
 - [ ] Implementar código de geração da principal tabela de resultados quantitativos
   - [ ] Definir o formato da tabela (métricas vs métodos)
