@@ -16,10 +16,23 @@ Treinar o gerador de músicas:
 python3 generator/train.py
 ```
 
-Gerar uma nova música:
+Treinar o baseline (LSTM, mesmos dados, tokens e laço de treino; salva `output/lstm_model.pt`):
+
+```bash
+python3 generator/train.py --arch lstm
+```
+
+Gerar uma nova música (a arquitetura é lida do checkpoint, então o mesmo comando serve para o baseline):
 
 ```bash
 python3 generator/generate.py checkpoints/model_best.pt
+python3 generator/generate.py output/lstm_model.pt
+```
+
+Calcular as métricas simbólicas de diversidade e similaridade (Yang & Lerch, 2020) de uma pasta de MIDIs gerados contra o conjunto de teste:
+
+```bash
+python3 evaluator/calc_diversity.py <pasta_de_midis_gerados> data/test --json output/diversity_<sistema>.json
 ```
 
 ## Tarefas

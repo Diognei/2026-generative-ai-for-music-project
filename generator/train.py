@@ -1,18 +1,18 @@
 from pathlib import Path
+import argparse
 import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 from vocabulary import Vocabulary
 from dataset import MIDIDataset, collate_batch
-from model import MusicTransformer
+from model import build_model
 
 
 DATA_DIR = Path("data")
 TRAIN_DATA_DIR = DATA_DIR / "train"
 VALIDATION_DATA_DIR = DATA_DIR / "valid"
 OUTPUT_DIR = Path("output")
-CHECKPOINT_PATH = OUTPUT_DIR / "model.pt"
 
 BLOCK_SIZE = 1024
 BATCH_SIZE = 128
@@ -20,16 +20,43 @@ EPOCHS = 1000
 LEARNING_RATE = 3e-4
 SAVE_INTERVAL = 5
 PRINT_INTERVAL = 1
-MODEL_CONFIG = {
-    "block_size": BLOCK_SIZE,
-    "d_model": 256,
-    "n_heads": 8,
-    "n_layers": 6,
-    "dropout": 0.1,
+MODEL_CONFIGS = {
+    # Modelo principal.
+    "transformer": {
+        "block_size": BLOCK_SIZE,
+        "d_model": 256,
+        "n_heads": 8,
+        "n_layers": 6,
+        "dropout": 0.1,
+    },
+    # Baseline: tamanho parecido com o Transformer (~4,2M parâmetros),
+    # para que a comparação isole a arquitetura (recorrência x atenção).
+    "lstm": {
+        "block_size": BLOCK_SIZE,
+        "d_model": 256,
+        "hidden_size": 512,
+        "n_layers": 2,
+        "dropout": 0.1,
+    },
 }
+# O Transformer mantém os nomes antigos (model.pt, model_epoch_N.pt).
+CHECKPOINT_PREFIX = {"transformer": "model", "lstm": "lstm_model"}
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Treina o gerador de músicas.")
+    parser.add_argument(
+        "--arch",
+        choices=sorted(MODEL_CONFIGS),
+        default="transformer",
+        help="Arquitetura a treinar (padrão: transformer).",
+    )
+    args = parser.parse_args()
+    arch = args.arch
+    model_config = MODEL_CONFIGS[arch]
+    prefix = CHECKPOINT_PREFIX[arch]
+    checkpoint_path = OUTPUT_DIR / f"{prefix}.pt"
+
     OUTPUT_DIR.mkdir(exist_ok=True)
 
     train_paths = sorted(TRAIN_DATA_DIR.rglob("*.mid"))
@@ -67,10 +94,12 @@ def main():
     )
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = MusicTransformer(vocab_size=vocab.size, **MODEL_CONFIG).to(device)
+    model = build_model(arch, vocab.size, model_config).to(device)
 
     optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
 
+    print(f"Architecture: {arch}")
+    print(f"Parameters: {sum(p.numel() for p in model.parameters()):,}")
     print(f"Device: {device}")
     print(f"Vocabulary size: {vocab.size}")
     print(f"Training windows: {len(train_dataset)}")
@@ -121,24 +150,29 @@ def main():
             best_validation_loss = validation_loss
             torch.save({
                 "model_state_dict": model.state_dict(),
+                "arch": arch,
+                "model_config": model_config,
                 "vocab_size": vocab.size,
-                **MODEL_CONFIG,
+                **model_config,
                 "validation_loss": validation_loss,
-            }, CHECKPOINT_PATH)
+                "epoch": epoch,
+            }, checkpoint_path)
 
         if epoch % SAVE_INTERVAL == 0:
             torch.save({
                 "model_state_dict": model.state_dict(),
+                "arch": arch,
+                "model_config": model_config,
                 "vocab_size": vocab.size,
-                **MODEL_CONFIG,
+                **model_config,
                 "validation_loss": validation_loss,
                 "epoch": epoch,
-            }, OUTPUT_DIR / f"model_epoch_{epoch}.pt")
-            print(f"Periodic checkpoint saved: model_epoch_{epoch}.pt")
+            }, OUTPUT_DIR / f"{prefix}_epoch_{epoch}.pt")
+            print(f"Periodic checkpoint saved: {prefix}_epoch_{epoch}.pt")
 
     print(
         f"Melhor validation loss: {best_validation_loss:.6f} | "
-        f"Checkpoint saved to: {CHECKPOINT_PATH}"
+        f"Checkpoint saved to: {checkpoint_path}"
     )
 
 
