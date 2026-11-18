@@ -8,3 +8,5 @@
 !/output/random/**/*.mp4
 /output/evaluation/**/*.wav
 /output/evaluation/**/*.mid
+# MIDIs gerados pelos modelos vão para o repositório (os .wav não).
+!/output/evaluation/*_results/*.mid
