@@ -1,0 +1,115 @@
+{
+  "input_dir": "output/evaluation/set3_lstm_results",
+  "reference_dir": "/refs",
+  "max_files": 500,
+  "max_seconds": 60.0,
+  "seed": 0,
+  "generated_count": 100,
+  "generated_skipped": 0,
+  "reference_count": 492,
+  "reference_skipped": 8,
+  "features": {
+    "pitch_count": {
+      "intra_generated_mean": 12.42060606060606,
+      "intra_generated_std": 10.197249561650903,
+      "intra_reference_mean": 10.117107942973524,
+      "intra_reference_std": 7.744875613861897,
+      "inter_mean": 12.743983739837399,
+      "inter_std": 10.23367549862305,
+      "kld_intra_ref_vs_inter": 0.04149366498030161,
+      "oa_intra_ref_vs_inter": 0.9078253276007715,
+      "diversity_ratio": 1.2276834576260847,
+      "oa_intra_gen_vs_intra_ref": 0.9161095332321548
+    },
+    "pitch_class_histogram": {
+      "intra_generated_mean": 0.29969797661155045,
+      "intra_generated_std": 0.1266572407653811,
+      "intra_reference_mean": 0.4135819839514519,
+      "intra_reference_std": 0.14096779587820338,
+      "inter_mean": 0.3631844422687255,
+      "inter_std": 0.1323096991489333,
+      "kld_intra_ref_vs_inter": 0.08182916732626117,
+      "oa_intra_ref_vs_inter": 0.8442269265532318,
+      "diversity_ratio": 0.724639825333229,
+      "oa_intra_gen_vs_intra_ref": 0.6838214392602213
+    },
+    "pitch_class_transition_matrix": {
+      "intra_generated_mean": 0.20273013944916835,
+      "intra_generated_std": 0.09259641357005449,
+      "intra_reference_mean": 0.2879992791328056,
+      "intra_reference_std": 0.09649027615005616,
+      "inter_mean": 0.25080224508820714,
+      "inter_std": 0.09315485702389295,
+      "kld_intra_ref_vs_inter": 0.14217593578561855,
+      "oa_intra_ref_vs_inter": 0.7796088094873977,
+      "diversity_ratio": 0.7039258572438407,
+      "oa_intra_gen_vs_intra_ref": 0.52877290562972
+    },
+    "pitch_range": {
+      "intra_generated_mean": 14.015757575757576,
+      "intra_generated_std": 10.678315333678478,
+      "intra_reference_mean": 13.139428410577384,
+      "intra_reference_std": 10.787161229937706,
+      "inter_mean": 13.746544715447154,
+      "inter_std": 10.881590529479253,
+      "kld_intra_ref_vs_inter": 0.00707141213372822,
+      "oa_intra_ref_vs_inter": 0.9592054098224468,
+      "diversity_ratio": 1.0666946185021822,
+      "oa_intra_gen_vs_intra_ref": 0.9502830909201112
+    },
+    "avg_pitch_interval": {
+      "intra_generated_mean": 2.957391959369996,
+      "intra_generated_std": 2.2725222356001864,
+      "intra_reference_mean": 3.692522652112174,
+      "intra_reference_std": 2.9240384421120655,
+      "inter_mean": 3.401499725585999,
+      "inter_std": 2.734919288440635,
+      "kld_intra_ref_vs_inter": 0.0088682769557844,
+      "oa_intra_ref_vs_inter": 0.9479906750937434,
+      "diversity_ratio": 0.8009136945113464,
+      "oa_intra_gen_vs_intra_ref": 0.8923523090671074
+    },
+    "note_count": {
+      "intra_generated_mean": 63.540808080808084,
+      "intra_generated_std": 80.22767508691783,
+      "intra_reference_mean": 646.9088222144951,
+      "intra_reference_std": 504.79180504144125,
+      "inter_mean": 558.5397154471544,
+      "inter_std": 479.257162378379,
+      "kld_intra_ref_vs_inter": 0.02976774309816732,
+      "oa_intra_ref_vs_inter": 0.9075198754605196,
+      "diversity_ratio": 0.09822220056188985,
+      "oa_intra_gen_vs_intra_ref": 0.20288053212894927
+    },
+    "avg_ioi": {
+      "intra_generated_mean": 0.055270671535154595,
+      "intra_generated_std": 0.047114453301340745,
+      "intra_reference_mean": 0.112967825980247,
+      "intra_reference_std": 0.11737945670784058,
+      "inter_mean": 0.09908156596510058,
+      "inter_std": 0.10533232007146652,
+      "kld_intra_ref_vs_inter": 0.014906364301337205,
+      "oa_intra_ref_vs_inter": 0.9517853294076453,
+      "diversity_ratio": 0.48926029208368543,
+      "oa_intra_gen_vs_intra_ref": 0.7240428302950297
+    },
+    "note_length_histogram": {
+      "intra_generated_mean": 0.43017888143977345,
+      "intra_generated_std": 0.2156677299299039,
+      "intra_reference_mean": 0.5232485950830766,
+      "intra_reference_std": 0.2002209464542863,
+      "inter_mean": 0.4850019817495413,
+      "inter_std": 0.20452878734190488,
+      "kld_intra_ref_vs_inter": 0.027906930314334756,
+      "oa_intra_ref_vs_inter": 0.8949874716670997,
+      "diversity_ratio": 0.8221309822560987,
+      "oa_intra_gen_vs_intra_ref": 0.7799057512262155
+    },
+    "mean_over_features": {
+      "kld_intra_ref_vs_inter": 0.04425243686194165,
+      "oa_intra_ref_vs_inter": 0.899143728136607,
+      "diversity_ratio": 0.7416838660147946,
+      "oa_intra_gen_vs_intra_ref": 0.7097710489699387
+    }
+  }
+}

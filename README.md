@@ -29,6 +29,19 @@ python3 generator/generate.py checkpoints/model_best.pt
 python3 generator/generate.py output/lstm_model.pt
 ```
 
+Gerar o conjunto de avaliação (N músicas, MIDI + WAV, sem alinhamento), nas mesmas condições de `generate.py` e com uma seed por música:
+
+```bash
+python3 generator/generate_batch.py checkpoints/lstm_model_best.pt output/evaluation/set3_lstm_results --n 100
+```
+
+Calcular FAD e KLD (áudio) de um conjunto contra os WAVs do conjunto de teste:
+
+```bash
+python3 evaluator/calc_fad.py output/evaluation/set3_lstm_results output/evaluation/setR_lakh_test_refs
+python3 evaluator/calc_kld.py output/evaluation/set3_lstm_results output/evaluation/setR_lakh_test_refs
+```
+
 Calcular as métricas simbólicas de diversidade e similaridade (Yang & Lerch, 2020) de uma pasta de MIDIs gerados contra o conjunto de teste:
 
 ```bash
