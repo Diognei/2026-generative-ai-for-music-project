@@ -17,7 +17,7 @@ from generate_videofile import generate_video
 from align_midi import fix_midi
 
 DEFAULT_CHECKPOINT_PATH = Path("checkpoints/model_best.pt")
-USE_REF_FILE = False
+USE_REF_FILE = True #False
 ALIGN_FINAL_MIDI = True
 
 
@@ -28,7 +28,7 @@ TOP_P = 0.9
 REPETITION_PENALTY = 1.08
 REPETITION_WINDOW = 96
 MAX_NEW_TOKENS = 4000
-MAX_TRACKS = 10
+MAX_TRACKS = 8
 DATA_DIR = Path("data")
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SOUNDFONT_PATH = PROJECT_ROOT / "assets" / "PC51d.sf2"
