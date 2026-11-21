@@ -17,7 +17,7 @@ from generate_videofile import generate_video
 from align_midi import fix_midi
 
 DEFAULT_CHECKPOINT_PATH = Path("checkpoints/model_best.pt")
-USE_REF_FILE = True #False
+USE_REF_FILE = False
 ALIGN_FINAL_MIDI = True
 
 
