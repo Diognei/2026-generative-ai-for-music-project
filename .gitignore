@@ -3,6 +3,7 @@
 /data/test/
 /data/test-wav/
 /data/full/
+/output/other/**
 /output/random/**
 !/output/random/**/
 !/output/random/**/*.mp4
