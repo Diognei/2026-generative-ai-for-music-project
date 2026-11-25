@@ -10,3 +10,6 @@
 !/output/random/**/*.mp4
 /output/evaluation/**/*.wav
 /output/evaluation/**/*.mid
+/output_ablation/**/*.pt
+/output_ablation/**/*.mid
+/output_ablation/**/*.wav

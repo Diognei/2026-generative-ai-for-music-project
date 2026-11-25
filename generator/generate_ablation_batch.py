@@ -11,7 +11,6 @@ from generate import (
     generate,
     TEMPERATURE,
     MAX_NEW_TOKENS,
-    ALIGN_FINAL_MIDI,
 )
 
 
@@ -23,6 +22,12 @@ def main():
     parser.add_argument("--output_dir", type=Path, required=True, help="Directory where .mid files will be saved")
     parser.add_argument("--num_samples", type=int, default=100, help="Number of pieces to generate (default: 100)")
     parser.add_argument("--seed", type=int, default=42, help="Initial random seed for reproducibility")
+    parser.add_argument(
+        "--align",
+        action="store_true",
+        default=False,
+        help="Apply post-hoc alignment via fix_midi() (default: False, keeps raw MIDIs).",
+    )
     args = parser.parse_args()
 
     if not args.checkpoint.exists():
@@ -49,7 +54,7 @@ def main():
     model.eval()
 
     print(f"=== Batch Generation: {args.checkpoint.name} ===")
-    print(f"Device: {device} | block_size: {checkpoint['block_size']} | Samples: {args.num_samples}")
+    print(f"Device: {device} | block_size: {checkpoint['block_size']} | Samples: {args.num_samples} | Align: {args.align}")
 
     generated_count = 0
     attempt = 0
@@ -72,7 +77,7 @@ def main():
             raw_midi_path = args.output_dir / f"sample_{generated_count + 1:03d}_raw.mid"
             tokens_to_midi(tokens, vocab, raw_midi_path)
 
-            if ALIGN_FINAL_MIDI:
+            if args.align:
                 aligned_path = Path(fix_midi(raw_midi_path))
                 final_path = args.output_dir / f"sample_{generated_count + 1:03d}.mid"
                 aligned_path.replace(final_path)
