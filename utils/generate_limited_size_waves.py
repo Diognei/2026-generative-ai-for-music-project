@@ -6,7 +6,7 @@ import shutil
 
 #MAX_SIZE = 20 * 1024 * 1024  # 20 MB (20 MiB)
 
-MAX_SIZE = 5 * 1024 * 1024  # 20 MB (20 MiB)
+MAX_SIZE = 5 * 1024 * 1024  # 5 MB (5 MiB)
 
 def process_wav(input_path, output_path):
 

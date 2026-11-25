@@ -1,0 +1,92 @@
+Métricas de MID:
+
+python3 evaluator_cached/calc_diversity.py ./output/evaluation/setR_lakh_test_refs/mid/ ./output/evaluation/setR_lakh_test_refs/mid/
+
+Generated songs: 1699 | Reference songs: 1699
+
+Feature                                        Intra gen         Intra ref Div ratio  OA div       FMD  KLD sim  OA sim
+-----------------------------------------------------------------------------------------------------------------------
+PC   pitch count                         10.693+-8.324     10.693+-8.324       1.000   1.000     0.000    0.003   0.974
+PCH  pitch class histogram                0.420+-0.146      0.420+-0.146       1.000   1.000     0.000    0.003   0.980
+PCTM pitch class transition matrix        0.290+-0.101      0.290+-0.101       1.000   1.000     0.000    0.004   0.970
+PR   pitch range                         12.925+-10.387    12.925+-10.387      1.000   1.000     0.000    0.006   0.977
+PI   avg pitch interval                   3.803+-3.140      3.803+-3.140       1.000   1.000     0.000    0.002   0.984
+NC   note count                         653.793+-530.042  653.793+-530.042     1.000   1.000     0.000    0.003   0.984
+IOI  avg inter-onset interval             0.109+-0.142      0.109+-0.142       1.000   1.000     0.000    0.009   0.983
+NLH  note length histogram                0.521+-0.203      0.521+-0.203       1.000   1.000     0.000    0.002   0.977
+-----------------------------------------------------------------------------------------------------------------------
+Mean over features                                                             1.000   1.000     0.000    0.004   0.979
+
+python3 evaluator_cached/calc_diversity.py ./output/evaluation/set1_lakh_valid_refs/mid/ ./output/evaluation/setR_lakh_test_refs/mid/
+
+Generated songs: 100 | Reference songs: 1699
+
+Feature                                        Intra gen         Intra ref Div ratio  OA div       FMD  KLD sim  OA sim
+-----------------------------------------------------------------------------------------------------------------------
+PC   pitch count                         10.429+-8.097     10.693+-8.324       0.975   0.975     0.410    0.003   0.977
+PCH  pitch class histogram                0.414+-0.134      0.420+-0.146       0.985   0.961     0.003    0.004   0.978
+PCTM pitch class transition matrix        0.284+-0.081      0.290+-0.101       0.981   0.918     0.009    0.013   0.945
+PR   pitch range                         13.414+-10.972    12.925+-10.387      1.038   0.951     0.447    0.004   0.973
+PI   avg pitch interval                   4.241+-3.329      3.803+-3.140       1.115   0.920     0.170    0.015   0.947
+NC   note count                         811.645+-687.289  653.793+-530.042     1.241   0.915 26695.231    0.013   0.954
+IOI  avg inter-onset interval             0.123+-0.106      0.109+-0.142       1.129   0.895     0.000    0.023   0.942
+NLH  note length histogram                0.512+-0.202      0.521+-0.203       0.981   0.964     0.003    0.002   0.976
+-----------------------------------------------------------------------------------------------------------------------
+Mean over features                                                             1.056   0.937  3337.034    0.010   0.962
+
+python3 evaluator_cached/calc_diversity.py ./output/evaluation/set2_transformer_results/mid/ ./output/evaluation/setR_lakh_test_refs/mid/
+
+Generated songs: 99 | Reference songs: 1699
+
+Feature                                        Intra gen         Intra ref Div ratio  OA div       FMD  KLD sim  OA sim
+-----------------------------------------------------------------------------------------------------------------------
+PC   pitch count                         13.389+-11.256    10.693+-8.324       1.252   0.907    17.690    0.020   0.940
+PCH  pitch class histogram                0.396+-0.136      0.420+-0.146       0.942   0.917     0.018    0.007   0.959
+PCTM pitch class transition matrix        0.265+-0.099      0.290+-0.101       0.913   0.853     0.017    0.015   0.950
+PR   pitch range                         16.995+-14.396    12.925+-10.387      1.315   0.877    22.337    0.025   0.945
+PI   avg pitch interval                   5.370+-4.634      3.803+-3.140       1.412   0.844     5.738    0.043   0.895
+NC   note count                         130.823+-125.361  653.793+-530.042     0.200   0.407 462932.389    0.016   0.924
+IOI  avg inter-onset interval             0.101+-0.077      0.109+-0.142       0.929   0.941     0.004    0.042   0.913
+NLH  note length histogram                0.557+-0.227      0.521+-0.203       1.070   0.920     0.009    0.011   0.956
+-----------------------------------------------------------------------------------------------------------------------
+Mean over features                                                             1.004   0.833 57872.275    0.022   0.935
+
+python3 evaluator_cached/calc_diversity.py ./output/evaluation/set3_lstm_results/ ./output/evaluation/setR_lakh_test_refs/mid/
+
+Generated songs: 100 | Reference songs: 1699
+
+Feature                                        Intra gen         Intra ref Div ratio  OA div       FMD  KLD sim  OA sim
+-----------------------------------------------------------------------------------------------------------------------
+PC   pitch count                         12.421+-10.197    10.693+-8.324       1.162   0.944    56.337    0.030   0.927
+PCH  pitch class histogram                0.300+-0.127      0.420+-0.146       0.714   0.670     0.013    0.079   0.841
+PCTM pitch class transition matrix        0.203+-0.093      0.290+-0.101       0.699   0.523     0.013    0.135   0.777
+PR   pitch range                         14.016+-10.678    12.925+-10.387      1.084   0.966    10.895    0.009   0.982
+PI   avg pitch interval                   2.957+-2.273      3.803+-3.140       0.778   0.902     1.912    0.007   0.963
+NC   note count                          63.541+-80.228   653.793+-530.042     0.097   0.207 480332.128    0.032   0.890
+IOI  avg inter-onset interval             0.055+-0.047      0.109+-0.142       0.507   0.729     0.011    0.024   0.957
+NLH  note length histogram                0.430+-0.216      0.521+-0.203       0.825   0.798     0.019    0.018   0.917
+-----------------------------------------------------------------------------------------------------------------------
+Mean over features                                                             0.733   0.717 60050.166    0.042   0.907
+
+Métricas de WAV:
+
+set1_lakh_valid_refs:
+Per-song FAD: 0.023924 +- 0.019862
+Per-song KLD: 0.094322 +- 0.075589
+
+Global FAD: 0.002049
+Global KLD: 0.000631
+
+set2_transformer_results
+Per-song FAD: 0.043807 +- 0.042093
+Per-song KLD: 0.157081 +- 0.118920
+
+Global FAD: 0.005038
+Global KLD: 0.025999
+
+set3_lstm_results
+Per-song FAD: 0.031214 +- 0.015850 
+Per-song KLD: 0.125905 +- 0.102085
+
+Global FAD: 0.005504
+Global KLD: 0.030870

@@ -5,6 +5,7 @@
 /data/full/
 /output/other/**
 /output/random/**
+/evaluator_cached/*.npz
 !/output/random/**/
 !/output/random/**/*.mp4
 /output/evaluation/**/*.wav
