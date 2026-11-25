@@ -34,3 +34,12 @@ Calcular as métricas simbólicas de diversidade e similaridade (Yang & Lerch, 2
 ```bash
 python3 evaluator/calc_diversity.py <pasta_de_midis_gerados> data/test --json output/diversity_<sistema>.json
 ```
+
+Calcular as métricas de áudio:
+
+```bash
+python3 evaluator/calc_fad_global.py <target_wav_songs_dir> <reference_wav_songs_dir>
+python3 evaluator/calc_kld_global.py <target_wav_songs_dir> <reference_wav_songs_dir>
+python3 evaluator/calc_fad.py <target_wav_songs_dir> <reference_wav_songs_dir>
+python3 evaluator/calc_kld.py <target_wav_songs_dir> <reference_wav_songs_dir>
+```
