@@ -79,3 +79,13 @@ python3 evaluator/calc_kld.py output_ablation/eval_ctx_256/wav output_ablation/r
 python3 evaluator/calc_fad.py output_ablation/eval_ctx_1024/wav output_ablation/ref_valid/wav
 python3 evaluator/calc_kld.py output_ablation/eval_ctx_1024/wav output_ablation/ref_valid/wav
 ```
+
+### Generated Songs
+
+The generated songs is in the directory `outputs/`. 
+
+### AI Usage
+
+AI tools were used to assist in generating the codes and writing the report.
+
+The conversations with AI are in the directory `ai-chats/`.
