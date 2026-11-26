@@ -82,7 +82,7 @@ python3 evaluator/calc_kld.py output_ablation/eval_ctx_1024/wav output_ablation/
 
 ### Generated Songs
 
-The generated songs is in the directory `outputs/`. 
+The generated songs are in the directory `outputs/`. 
 
 ### AI Usage
 
